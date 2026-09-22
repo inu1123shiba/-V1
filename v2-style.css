@@ -1,0 +1,42 @@
+
+/* オノマトペ早押し対戦 V2 - 既存style.cssの後に読み込む */
+:root{--v2-orange:#ff573d;--v2-black:#171717;--v2-yellow:#ffd34f;--v2-cream:#fff8e9}
+body{overflow-x:hidden}
+.soundToggle{position:fixed;right:18px;top:18px;z-index:9999;width:48px;height:48px;border:2px solid var(--v2-black);border-radius:50%;background:#fff;box-shadow:4px 4px 0 var(--v2-black);font-size:20px;padding:0;cursor:pointer}
+.v2PanelIn{animation:v2PanelIn .38s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--panel-delay,0s)}
+@keyframes v2PanelIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+.v2Word{animation:v2WordIn .48s cubic-bezier(.17,.84,.3,1.25) both!important}
+@keyframes v2WordIn{0%{opacity:0;transform:scale(.55) rotate(-4deg)}70%{transform:scale(1.06) rotate(1deg)}100%{opacity:1;transform:none}}
+.buzz{min-height:126px!important;border-radius:28px!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:34px!important;box-shadow:0 10px 0 #b52e1d,0 18px 35px rgba(0,0,0,.16)!important;transition:.12s transform,.12s box-shadow!important}
+.buzz:hover:not(:disabled){transform:translateY(-3px) scale(1.01)}
+.buzz.pressed{transform:translateY(8px) scale(.98)!important;box-shadow:0 2px 0 #b52e1d!important}
+.buzzIcon{font-size:30px}.buzz small{display:block;font-size:12px;letter-spacing:.08em;opacity:.85}
+.timer{transition:.18s transform,.18s background}
+.timer.v2Danger,.timer.danger{animation:v2Pulse .55s infinite alternate}
+@keyframes v2Pulse{to{transform:scale(1.12);filter:saturate(1.4)}}
+.finalBadge{margin:14px 0;padding:10px 14px;text-align:center;border:2px solid var(--v2-black);background:var(--v2-yellow);font-weight:900;letter-spacing:.12em;box-shadow:4px 4px 0 var(--v2-black);animation:v2Final .7s ease-in-out infinite alternate}
+@keyframes v2Final{to{transform:scale(1.025)}}
+.v2Overlay{position:fixed;inset:0;z-index:9998;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;background:rgba(255,248,233,.88);opacity:0;transform:scale(1.08);transition:.22s}
+.v2Overlay.show{opacity:1;transform:scale(1)}
+.v2Overlay b{font-size:clamp(48px,10vw,110px);line-height:.95;color:var(--v2-black);text-shadow:5px 5px 0 #fff}
+.v2Overlay span{margin-top:18px;font-weight:900;letter-spacing:.18em}
+.v2Overlay.correct b{color:var(--v2-orange)}.v2Overlay.wrong b{color:#333}.v2Overlay.final{background:rgba(23,23,23,.92);color:#fff}.v2Overlay.final b{color:var(--v2-yellow);text-shadow:none}
+.resultPoint.correct{animation:v2Correct .5s cubic-bezier(.2,.8,.2,1.2)}
+@keyframes v2Correct{0%{transform:scale(.7)}70%{transform:scale(1.08)}100%{transform:none}}
+.confettiBox{position:fixed;inset:0;z-index:10000;pointer-events:none;overflow:hidden}
+.confettiBox i{position:absolute;top:-30px;font-style:normal;animation:confettiFall 2s linear forwards}
+.confettiBox i:nth-child(3n){color:#ff573d}.confettiBox i:nth-child(3n+1){color:#171717}.confettiBox i:nth-child(3n+2){color:#ffc928}
+@keyframes confettiFall{to{transform:translateY(110vh) rotate(760deg)}}
+.v2Rank{opacity:0;animation:rankIn .42s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:var(--delay)}
+@keyframes rankIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
+.kingTitle{font-size:13px;letter-spacing:.15em;margin-bottom:8px;color:#8c6500}
+@media(max-width:600px){
+ .soundToggle{right:12px;top:12px;width:42px;height:42px}
+ .buzz{min-height:150px!important;font-size:36px!important;border-radius:24px!important}
+ .words{gap:10px!important}
+ .word{font-size:clamp(28px,10vw,46px)!important;padding:18px 8px!important}
+ .v2Overlay b{font-size:17vw}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
