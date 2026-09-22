@@ -251,7 +251,6 @@ grant execute on function public.claim_buzz(uuid,uuid) to authenticated;
 grant execute on function public.submit_answer(uuid,uuid,text) to authenticated;
 grant execute on function public.react_answer(uuid,text) to authenticated;
 grant execute on function public.next_round(uuid) to authenticated;
-grant execute on function public.timeout_round(uuid);
 grant execute on function public.set_ready(uuid,boolean) to authenticated;
 grant execute on function public.rematch_room(uuid) to authenticated;
 grant execute on function public.create_question(text,text,text,text,text[],int) to authenticated;
